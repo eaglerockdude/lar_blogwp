@@ -14,6 +14,7 @@ class PostsController < ApplicationController
       flash[:notice]  = "Post was created successfully."
       redirect_to posts_path
     else
+      flash.now[:error] = "Error saving post."
       render :new
     end
   end
@@ -32,6 +33,7 @@ class PostsController < ApplicationController
     if @post.update(post_params)
       redirect_to @post, notice: "Post has been updated."
     else
+      flash.now[:error] = "Error during update ofz post."
       render :edit
     end
   end
