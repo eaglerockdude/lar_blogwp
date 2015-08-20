@@ -26,9 +26,16 @@
     <p> <%= link_to "All Posts", posts_path %></p>
 
     <div class="buttons">
-      <button class="button"><%= link_to "New Post", new_post_path %></button>
+
       <button class="button"><%= link_to "All Posts", posts_path %></button>
-      <button class="button">Log Out</button>
+
+      <% if !user_signed_in? %>
+          <button class="button"><%=link_to "Login", new_user_session_path %></button>
+      <% else %>
+          <button class="button"><%= link_to "New Post", new_post_path %></button>
+          <button class="button"><%=link_to "Logout", destroy_user_session_path, :method => :delete %></button>
+      <% end %>
+
     </div>
 
   </div>
